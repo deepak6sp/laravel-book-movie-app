@@ -17,6 +17,22 @@ class WelcomeController extends Controller
     public function index()
     {
         //
+        $html = new \Htmldom('http://www.google.com.au/movies?near=bangalore');
+        print '<pre>'; 
+        foreach($html->find('#movie_results .theater') as $div) { 
+
+            print "Theate:  ".$div->find('h2 a',0)->innertext."\n"; 
+            print "Address: ". $div->find('.info',0)->innertext."\n"; 
+
+         
+            foreach($div->find('.movie') as $movie) { 
+                print "\tMovie:    ".$movie->find('.name a',0)->innertext.'<br />'; 
+                print "\tTime:    ".$movie->find('.times',0)->innertext.'<br />'; 
+            } 
+            print "\n\n"; 
+        } 
+                 
+        $html->clear(); 
 
         $list = array(
             [ "title"=>'Reggae', "id"=> 1 ],

@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 Route::get('/hello', 'WelcomeController@index');
 
+Route::get('/domParser', 'HtmlDOMParser@index');
+
