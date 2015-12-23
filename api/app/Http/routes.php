@@ -17,5 +17,7 @@ Route::get('/', function () {
 
 Route::get('/hello', 'WelcomeController@index');
 
-Route::get('/domParser', 'HtmlDOMParser@index');
+Route::get('/getCinemas', 'HtmlDomParser@getCinemas');
+
+Route::get('/getMovie', 'HtmlDomParser@getMovie');
 
