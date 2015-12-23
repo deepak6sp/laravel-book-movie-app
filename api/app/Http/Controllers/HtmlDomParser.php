@@ -31,11 +31,13 @@ class HtmlDomParser extends Controller
         foreach($html->find('#movie_results .theater') as $div) { 
             //print "Theatre:  ".$div->find('h2 a',0)->innertext."\n"; 
             //print "Address: ". $div->find('.info',0)->innertext."\n"; 
-            $theater_name[] = $div->find('h2 a',0)->innertext;
-            $theater_address[] = $div->find('.info',0)->innertext;
+            $theater_name = $div->find('h2 a',0)->innertext;
+            $theater_address = $div->find('.info',0)->innertext;
+            $value[] = ["theater name"=>$theater_name,"theater address"=>$theater_address];
         } 
-        print_r($theater_name);
-        print_r($theater_address); 
+        print_r (json_encode($value));
+        //print_r($value);
+
         $html->clear(); 
 
     }
