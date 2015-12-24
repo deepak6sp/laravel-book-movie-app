@@ -33,9 +33,15 @@ class HtmlDomParser extends Controller
             //print "Address: ". $div->find('.info',0)->innertext."\n"; 
             $theater_name = $div->find('h2 a',0)->innertext;
             $theater_address = $div->find('.info',0)->innertext;
-            $value[] = ["theater name"=>$theater_name,"theater address"=>$theater_address];
-        } 
-        print_r (json_encode($value));
+            foreach($div->find('.movie') as $movie) { 
+                $movie_name = $movie->find('.name a',0)->innertext; 
+                $movie_time = $movie->find('.times',0)->innertext;
+                $movie_info[] = ["movieName"=>$movie_name,"movieTimes"=>$movie_time];
+            } 
+            $theater_info[] = ["theaterName"=>$theater_name,"theaterAddress"=>$theater_address,"movieDetails"=>$movie_info];
+        }
+        $theater_details=["theaterDetails"=>$theater_info];
+        print_r (json_encode($theater_details,JSON_UNESCAPED_SLASHES));
         //print_r($value);
 
         $html->clear(); 

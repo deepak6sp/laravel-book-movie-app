@@ -1,4 +1,6 @@
 var elixir = require('laravel-elixir');
+var gulp        = require('gulp');
+var browserSync = require('browser-sync').create();
 
 /*
  |--------------------------------------------------------------------------
@@ -14,3 +16,12 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.sass('app.scss');
 });
+
+gulp.task('server', function() {
+
+    browserSync.init({
+        proxt: "localhost"
+    });
+    gulp.watch("/*").on('change', browserSync.reload);
+});
+
